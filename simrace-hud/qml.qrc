@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Hud.qml</file>
+        <file>HudForm.ui.qml</file>
+    </qresource>
+</RCC>

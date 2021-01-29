@@ -30,4 +30,11 @@ void Vehicle::setTransmission(Transmission *transmission) {
   emit transmissionChanged();
 }
 
+float Vehicle::fuel() const { return _fuel; }
+
+void Vehicle::setFuel(float fuel) {
+  _fuel = fuel;
+  emit fuelChanged();
+}
+
 SIMRACE_CORE_NAMEPACE_END

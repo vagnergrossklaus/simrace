@@ -15,14 +15,13 @@ StreamerDemoHandler::StreamerDemoHandler(Vehicle *vehicle, QObject *parent)
   _gear = 0;
   _rpm = 1500;
   _speed = 0;
+  _fuel = 50.0;
 
   _random.securelySeeded();
-
-  read("");
 }
 
 void StreamerDemoHandler::start() {
-  _timer.setSingleShot(true);
+  read("");
   _timer.start(500);
 }
 
@@ -30,8 +29,10 @@ void StreamerDemoHandler::stop() { _timer.stop(); }
 
 void StreamerDemoHandler::read(const QByteArray & /*data*/) {
   vehicle()->setSpeed(_speed);
+  vehicle()->setFuel(_fuel);
   vehicle()->engine()->setRpm(_rpm);
   vehicle()->engine()->setMaxRpm(8000);
+  vehicle()->engine()->setOilPressure(1);
   vehicle()->transmission()->setGear(QString::number(_gear).at(0));
   vehicle()->transmission()->setGears(6);
 }
@@ -63,20 +64,27 @@ void StreamerDemoHandler::onTimeout() {
   }
 
   _gear = _gear < 1 ? 1
-                    : _gear > vehicle()->transmission()->gears()
-                          ? vehicle()->transmission()->gears()
-                          : _gear;
+          : _gear > vehicle()->transmission()->gears()
+              ? vehicle()->transmission()->gears()
+              : _gear;
 
-  _rpm = _rpm < 1500 ? 1500
-                     : _rpm > vehicle()->engine()->maxRpm()
-                           ? vehicle()->engine()->maxRpm()
-                           : _rpm;
+  _rpm = _rpm < 1500                            ? 1500
+         : _rpm > vehicle()->engine()->maxRpm() ? vehicle()->engine()->maxRpm()
+                                                : _rpm;
 
   _speed = _speed < 20 ? 20 : _speed;
 
-  read("");
+  if (_fuel > 0) {
+    _fuel -= 0.0000001 * _rpm;
+    _fuel = qMax(_fuel, 0.0f);
+  } else {
+    _rpm = 0;
+    _speed = 0;
+    _gear = 0;
+    stop();
+  }
 
-  start();
+  read("");
 }
 
 SIMRACE_DEMO_NAMEPACE_END

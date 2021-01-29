@@ -50,5 +50,6 @@ LIBS += -L$$OUT_PWD/../simrace-projectcars/ -lsimrace-projectcars
 INCLUDEPATH += $$PWD/../simrace-projectcars
 
 DISTFILES += \
+    DigitalGauge.qml \
     Hud.qml \
     HudForm.ui.qml

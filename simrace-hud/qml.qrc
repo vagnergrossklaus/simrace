@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>Hud.qml</file>
         <file>HudForm.ui.qml</file>
+        <file>DigitalGauge.qml</file>
     </qresource>
 </RCC>

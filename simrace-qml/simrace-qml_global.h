@@ -1,0 +1,12 @@
+#ifndef SIMRACEQML_GLOBAL_H
+#define SIMRACEQML_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(SIMRACEQML_LIBRARY)
+#  define SIMRACEQML_EXPORT Q_DECL_EXPORT
+#else
+#  define SIMRACEQML_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // SIMRACEQML_GLOBAL_H

@@ -26,6 +26,7 @@ private:
   int _gearTarget = 0;
   int _rpm = 0;
   int _speed = 0;
+  float _fuel = 0;
   bool _breake = false;
   bool _throttle = false;
   QTimer _timer;

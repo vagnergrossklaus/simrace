@@ -2,10 +2,11 @@
 
 SIMRACE_CORE_NAMEPACE_BEGIN
 
-StreamerUDPHandler::StreamerUDPHandler(Vehicle *vehicle,
-                                       StreamerReader *reader,
+StreamerUDPHandler::StreamerUDPHandler(Vehicle *vehicle, StreamerReader *reader,
                                        const int port, QObject *parent)
-    : StreamerHandler(vehicle, reader, parent), _port(port) {}
+    : StreamerHandler(vehicle, reader, parent), _port(port) {
+  return;
+}
 
 void StreamerUDPHandler::start() {
   _socket.bind(_port, QUdpSocket::ShareAddress);

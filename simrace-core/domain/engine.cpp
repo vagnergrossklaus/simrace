@@ -25,4 +25,18 @@ void Engine::setMaxDisplayRpm(int maxDisplayRpm) {
   emit maxDisplayRpmChanged();
 }
 
+float Engine::oilPressure() const { return _oilPressure; }
+
+void Engine::setOilPressure(float oilPressure) {
+  _oilPressure = oilPressure;
+  emit oilPressureChanged();
+}
+
+float Engine::oilTemperature() const { return _oilTemperature; }
+
+void Engine::setOilTemperature(float oilTemperature) {
+  _oilTemperature = oilTemperature;
+  emit oilPressureChanged();
+}
+
 SIMRACE_CORE_NAMEPACE_END

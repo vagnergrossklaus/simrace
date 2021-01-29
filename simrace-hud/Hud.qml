@@ -6,11 +6,7 @@ HudForm {
 
     id: form
 
-    gauge.formatValue: function (value) {
-        return value.toFixed(0)
-    }
-
-    gauge1.formatValue: function (value) {
+    ggeRpm.formatValue: function (value) {
         return value.toFixed(0)
     }
 
